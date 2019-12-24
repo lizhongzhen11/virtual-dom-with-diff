@@ -13,7 +13,22 @@ npm run dev
 ## 难点
 1. 主要是与DOM有关的api不熟，只能面向MDN查找。不过即使对api不熟，实现一遍也是很好的，比看那些文章却不明其理要好，直接动手实现多好。
 2. diff算法不理解，只好中途先去学习<a href="https://github.com/Matt-Esch/virtual-dom">virtual-dom</a>库的源码，主要是结合示例去跑了一遍。
+3. patch方法应用更新有点小烦
+
+## 看图说话
+
+旧dom节点：
+
+<img src="./oldNode.png">
+
+旧dom节点对应的vdom结构：
 
 <img src="./oldVdom.png">
 
+应用diff方法后得到的diffs对象：
+
 <img src="./diff.png">
+
+应用patch方法更新后的dom节点：
+
+<img src="./patch.png">

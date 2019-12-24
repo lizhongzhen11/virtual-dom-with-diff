@@ -6,6 +6,7 @@ import { deepClone } from './src/utils'
 
 let node = document.querySelector('#root')
 let vdom = new Vdom(node)
+console.log(node)
 console.log(vdom)
 
 // vdom.children[1].props.value = '无始天帝'
@@ -40,4 +41,5 @@ console.log(diffs)
 
 
 
-node = patch(node, vdom, diffs)
+node = patch(node, node, vdom, diffs)
+console.log(node)
