@@ -34,7 +34,7 @@ import { diffProps } from './diff-props'
 //   ]
 // }
 
-// 使用index.js中的示例，调用diff方法得到的数据结构示例
+// 使用index.js中的示例，调用diff方法得到的数据结构示例（包含文字节点）
 // {
 //   0: {
 //     vdom: {
@@ -63,8 +63,13 @@ import { diffProps } from './diff-props'
 //         class: 'flex justify-center aligin-center'
 //       }
 //     }
+//   },
+//   3: {
+//     vdom: '仙路尽头谁为峰，一见无始道成空'
+//     patch: '吾为天帝，当镇世间一切敌'
 //   }
 // }
+
 
 const isVdom = (vdom) => vdom instanceof Vdom
 
@@ -79,6 +84,7 @@ export const diff = (oldVdom, newVdom) => {
   // 再去继续递归遍历第二个子节点，保证index的连续性，然后第三个，第四个依此类推
   let index = 0 
   walk(oldVdom, newVdom, patches, index) // 递归树，比较新旧差异，放进patches
+  patches.length = Object.keys(patches).length // 构造成类数组对象，方便转为数组
   return patches
 }
 
@@ -98,9 +104,10 @@ const walk = (oldVdom, newVdom, patches, index) => {
   // 而我自己写的diff方法得到的 {'1-3': {'2-0': {props: {class: 'flex justify-center aligin-center'}}}} 
   // 简直不能比，我写的diff得到的还是嵌套对象，即使应用更新还需要递归我的diffs，性能差距很大
 
+  // console.log(oldVdom, newVdom, isString(oldVdom), isString(newVdom))
   if (isString(oldVdom) && isString(newVdom)) {
     if (oldVdom !== newVdom) {
-      patches[index++] = newVdom
+      patches[index++] = new VPatch(oldVdom, newVdom)
     }
   }
 
