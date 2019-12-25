@@ -3,6 +3,7 @@ import { createElement }  from './src/element'
 import { diff } from './src/diff'
 import { patch } from './src/patch'
 import { deepClone } from './src/utils'
+import { diff as vdomDiff } from './src/vdom-diff'
 
 let node = document.querySelector('#root')
 let vdom = new Vdom(node)
@@ -13,7 +14,7 @@ console.log(vdom)
 // https://developer.mozilla.org/zh-CN/docs/Web/API/Node/replaceChild
 // node.parentNode.replaceChild(createElement(vdom), node)
 
-let newVdom = deepClone(vdom)
+let newVdom = new Vdom(node)
 newVdom.props.class = 'flex'
 newVdom.children[1].props.value = '无始天帝'
 newVdom.children[3].children[0].props.class = 'flex justify-center aligin-center'
@@ -43,3 +44,8 @@ console.log(diffs)
 
 node = patch(node, node, vdom, diffs)
 console.log(node)
+
+
+
+let vdomDiffs = vdomDiff(vdom, newVdom)
+console.log(vdomDiffs)

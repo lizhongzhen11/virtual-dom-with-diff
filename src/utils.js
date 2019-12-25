@@ -51,3 +51,5 @@ const isPrimitive = (obj) => {
   ]
   return primitives.includes(Object.prototype.toString.call(obj))
 }
+
+export const isString = (str) => Object.prototype.toString.call(str) === '[object String]'
