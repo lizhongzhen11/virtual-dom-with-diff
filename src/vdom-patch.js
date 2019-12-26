@@ -46,7 +46,7 @@ const applyProps = (node, vdom, props) => {
         node.style.cssText = props[key]
         break
       case 'value':
-        if (vdom.type === 'input' || vdom.type === 'textArea') {
+        if (vdom.type === 'input' || vdom.type === 'textarea') {
             node.value = props[key]
             node.setAttribute(key, props[key])
         }

@@ -43,7 +43,7 @@ const setArr = (dom, type, props) => {
         dom.style.cssText = props[key]
         break
       case 'value':
-        if (type === 'input' || type === 'textArea') {
+        if (type === 'input' || type === 'textarea') {
           dom.value = props[key]
         }
         break

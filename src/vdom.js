@@ -49,7 +49,7 @@ class Vdom {
     if (dom.classList.length) {
       this.props.class = Array.from(dom.classList).join(',')
     }
-    if (this.type === 'input' || this.type === 'textArea') {
+    if (this.type === 'input' || this.type === 'textarea') {
       this.props.value = dom.value
     }
     if (dom.childNodes) {
