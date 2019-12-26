@@ -43,7 +43,7 @@ class Vdom {
     this.type = dom.nodeName.toLowerCase()
     this.props = {}
     this.children = []
-    if (dom.cssText) {
+    if (dom.style.cssText) {
       this.props.style = dom.style.cssText
     }
     if (dom.classList.length) {
